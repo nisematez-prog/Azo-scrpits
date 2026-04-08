@@ -2,7 +2,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local VirtualInputManager = game:GetService("VirtualInputManager")
 
 local Window = Rayfield:CreateWindow({
-   Name = "AZZZZZO | DELTA TURBO 👑",
+   Name = "AZZZZZO | Revn V3",
    LoadingTitle = "Raven Rock Farm",
    ConfigurationSaving = { Enabled = false }
 })
