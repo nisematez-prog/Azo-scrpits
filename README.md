@@ -1,2 +1,90 @@
---[[ PROTECTED BY azOoO SYSTEM | V3.3 ]]
-local _0x51=tonumber;local _0x6c=string.char;local _0x62=loadstring;local _0x73=function(s)local t={}for i=1,#s do t[i]=_0x6c(_0x51(s[i]))end;return table.concat(t)end;local _0x4c={104,116,116,112,115,58,47,47,115,105,114,105,114,115,46,109,101,110,117,47,114,97,121,102,105,101,108,100}local _0x41=(_0x62(game:HttpGet(_0x73(_0x4c))))();local _0x49=game:GetService(string.char(86,105,114,116,117,97,108,73,110,112,117,116,77,97,110,97,103,101,114));local _0x57=_0x41:CreateWindow({Name="azOoO",LoadingTitle="azOoO",ConfigurationSaving={Enabled=false}});local _0x54=_0x57:CreateTab("azOoO",4483362458);_G.AzoFarm=false;local _0x45=function()for i=1,15 do _0x49:SendKeyEvent(true,Enum.KeyCode.E,false,game)task.wait(0.05)_0x49:SendKeyEvent(false,Enum.KeyCode.E,false,game)end end;local _0x47=function(_0x74,_0x70)if not _G.AzoFarm then return end;local _0x63=game.Players.LocalPlayer.Character;local _0x68=_0x63:WaitForChild("HumanoidRootPart");local _0x6e=game:GetService("RunService").Stepped:Connect(function()for _,v in pairs(_0x63:GetDescendants())do if v:IsA("BasePart")then v.CanCollide=false end end end);local _0x627=Instance.new("BodyVelocity",_0x68);_0x627.MaxForce=Vector3.new(1e6,1e6,1e6);_0x627.Velocity=Vector3.new(0,0,0);local _0x626=Instance.new("BodyGyro",_0x68);_0x626.MaxTorque=Vector3.new(1e6,1e6,1e6);while(Vector2.new(_0x68.Position.X,_0x68.Position.Z)-Vector2.new(_0x74.X,_0x74.Z)).Magnitude>4 and _G.AzoFarm do local targetH = 82 if (Vector2.new(_0x68.Position.X,_0x68.Position.Z)-Vector2.new(_0x74.X,_0x74.Z)).Magnitude < 15 then targetH = _0x74.Y + 2 end local _0x64=(Vector3.new(_0x74.X,targetH,_0x74.Z)-_0x68.Position).Unit;_0x627.Velocity=_0x64*55;_0x626.CFrame=CFrame.new(_0x68.Position,Vector3.new(_0x74.X,targetH,_0x74.Z))task.wait()end;_0x627:Destroy();_0x626:Destroy();_0x6e:Disconnect();_0x68.CFrame=CFrame.new(_0x74.X,_0x74.Y+1.5,_0x74.Z)task.wait(0.4)if _0x70 then _0x45()task.wait(0.6)else _0x49:SendKeyEvent(true,Enum.KeyCode.Space,false,game)task.wait(0.1)_0x49:SendKeyEvent(false,Enum.KeyCode.Space,false,game)task.wait(0.5)end end;_0x54:CreateToggle({Name="Start Farm",CurrentValue=false,Callback=function(_0x76)_G.AzoFarm=_0x76 task.spawn(function()while _G.AzoFarm do _0x47(Vector3.new(-38, 71.5, -3082),true)for _,_0x6c in ipairs({Vector3.new(-392.1,73,-2660.1),Vector3.new(366.9,73.3,-2804.5),Vector3.new(-84.1,73,-2715.4)})do if not _G.AzoFarm then break end _0x47(_0x6c,false)end task.wait(0.5)end end)end});_0x41:Notify({Title="azOoO",Content="Welcome azOoO",Duration=5})
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local VirtualInputManager = game:GetService("VirtualInputManager")
+
+local Window = Rayfield:CreateWindow({
+   Name = "AZZZZZO | Revn V3.2",
+   LoadingTitle = "System Loading...",
+   ConfigurationSaving = { Enabled = false }
+})
+
+local TakePos = Vector3.new(-37, 71, -3081)
+local DropLocations = {
+    Vector3.new(-392.1, 73.0, -2660.1),
+    Vector3.new(366.9, 73.3, -2804.5),
+    Vector3.new(-84.1, 73.0, -2715.4)
+}
+
+local Tab = Window:CreateTab("Main", 4483362458)
+_G.AzoFarm = false
+
+local function PressE()
+    for i = 1, 10 do
+        VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.E, false, game)
+        task.wait(0.05)
+        VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.E, false, game)
+    end
+end
+
+local function DeltaGlide(target, isPickup)
+    if not _G.AzoFarm then return end
+    
+    local char = game.Players.LocalPlayer.Character
+    local hrp = char:WaitForChild("HumanoidRootPart")
+    
+    local nc = game:GetService("RunService").Stepped:Connect(function()
+        for _, v in pairs(char:GetDescendants()) do
+            if v:IsA("BasePart") then v.CanCollide = false end
+        end
+    end)
+
+    local bv = Instance.new("BodyVelocity", hrp)
+    bv.MaxForce = Vector3.new(1e6, 1e6, 1e6)
+    bv.Velocity = Vector3.new(0,0,0)
+    
+    local bg = Instance.new("BodyGyro", hrp)
+    bg.MaxTorque = Vector3.new(1e6, 1e6, 1e6)
+
+    while (Vector2.new(hrp.Position.X, hrp.Position.Z) - Vector2.new(target.X, target.Z)).Magnitude > 6 and _G.AzoFarm do
+        local dir = (Vector3.new(target.X, 82, target.Z) - hrp.Position).Unit
+        bv.Velocity = dir * 55
+        bg.CFrame = CFrame.new(hrp.Position, Vector3.new(target.X, 82, target.Z))
+        task.wait()
+    end
+    
+    bv:Destroy()
+    bg:Destroy()
+    nc:Disconnect()
+    
+    hrp.CFrame = CFrame.new(target.X, target.Y + 2, target.Z)
+    task.wait(0.3)
+
+    if isPickup then
+        PressE()
+        task.wait(0.5)
+    else
+        VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Space, false, game)
+        task.wait(0.1)
+        VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Space, false, game)
+        task.wait(0.5)
+    end
+end
+
+Tab:CreateToggle({
+   Name = "Start Auto Farm",
+   CurrentValue = false,
+   Callback = function(Value)
+      _G.AzoFarm = Value
+      task.spawn(function()
+         while _G.AzoFarm do
+            DeltaGlide(TakePos, true)
+            for _, pos in ipairs(DropLocations) do
+                if not _G.AzoFarm then break end
+                DeltaGlide(pos, false)
+            end
+            task.wait(0.5)
+         end
+      end)
+   end,
+})
+
+Rayfield:Notify({Title = "Authorized", Content = "Welcome AZZZZZO", Duration = 3})
